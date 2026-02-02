@@ -1,14 +1,18 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import 'react-native-reanimated';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { Stack } from "expo-router";
+import "react-native-reanimated";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { useDatabase } from '@/hooks/use-database';
-import { SQLiteProvider } from 'expo-sqlite';
-import { useEffect } from 'react';
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useDatabase } from "@/hooks/use-database";
+import { SQLiteProvider } from "expo-sqlite";
+import { useEffect } from "react";
 
 export const unstable_settings = {
-  anchor: '(tabs)',
+  anchor: "(tabs)",
 };
 
 function DatabaseInitializer() {
@@ -25,13 +29,22 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <SQLiteProvider databaseName='stepflower.db'>
+    <SQLiteProvider databaseName="stepflower.db">
       <DatabaseInitializer />
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </ThemeProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+          <Stack.Screen name="routines/[id]" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="routines/[id]/activities/[activityId]"
+            options={{ title: "StepFlower" }}
+          />
+          <Stack.Screen
+            name="routines/[id]/activities/completed"
+            options={{ title: "StepFlower" }}
+          />
+        </Stack>
+      </ThemeProvider>
     </SQLiteProvider>
   );
 }
