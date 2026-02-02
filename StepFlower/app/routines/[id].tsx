@@ -1,8 +1,7 @@
 // app/routines/[id].tsx
-import React from "react";
-import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import AppHeader from "@/components/AppHeader";
+import React from "react";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 const ROUTINE_DETAILS: Record<
   string,
   {
@@ -61,10 +60,10 @@ function ActivityRow({
         done ? styles.activityDone : styles.activityPending,
       ]}
     >
-      <Text style={styles.activityIndex}>{indexLabel}</Text>
-      <Text style={styles.activityTitle}>{title}</Text>
+      <Text allowFontScaling style={styles.activityIndex}>{indexLabel}</Text>
+      <Text allowFontScaling style={styles.activityTitle}>{title}</Text>
       <View style={styles.activityIcon}>
-        <Text style={{ fontSize: 18 }}>{icon}</Text>
+        <Text allowFontScaling style={{ fontSize: 18 }}>{icon}</Text>
       </View>
     </View>
   );
@@ -84,9 +83,10 @@ export default function RoutineDetail() {
           { justifyContent: "center", alignItems: "center" },
         ]}
       >
-        <Text>Rutina no encontrada.</Text>
-        <Pressable onPress={() => router.back()} style={{ marginTop: 12 }}>
-          <Text style={{ fontWeight: "700" }}>Volver</Text>
+        <Text allowFontScaling>Rutina no encontrada.</Text>
+        <Pressable accessibilityRole="button"
+          accessibilityLabel="Volver" onPress={() => router.back()} style={{ marginTop: 12 }}>
+          <Text allowFontScaling style={{ fontWeight: "700" }}>Volver</Text>
         </Pressable>
       </View>
     );
@@ -95,23 +95,24 @@ export default function RoutineDetail() {
   return (
     <View style={styles.screen}>
       <View style={styles.topBar}>
-        <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Text style={styles.backText}>←</Text>
+        <Pressable accessibilityRole="button"
+  accessibilityLabel="Volver" onPress={() => router.back()} style={styles.backBtn}>
+          <Text allowFontScaling style={styles.backText}>←</Text>
         </Pressable>
-        <Text style={styles.headerTitle}>{routine.title}</Text>
+        <Text allowFontScaling style={styles.headerTitle}>{routine.title}</Text>
         <View style={{ width: 40 }} />
       </View>
 
       {/* Card resumen */}
       <View style={styles.summaryCard}>
         <View style={styles.avatar}>
-          <Text style={{ fontSize: 22 }}>{routine.avatarEmoji}</Text>
+          <Text allowFontScaling style={{ fontSize: 22 }}>{routine.avatarEmoji}</Text>
         </View>
 
         <View style={{ flex: 1 }}>
-          <Text style={styles.summaryTitle}>{routine.title}</Text>
-          <Text style={styles.summaryDate}>{routine.date}</Text>
-          <Text style={styles.summarySteps}>
+          <Text allowFontScaling style={styles.summaryTitle}>{routine.title}</Text>
+          <Text allowFontScaling style={styles.summaryDate}>{routine.date}</Text>
+          <Text allowFontScaling style={styles.summarySteps}>
             {routine.stepsDone}/{routine.stepsTotal} steps
           </Text>
         </View>
@@ -122,7 +123,7 @@ export default function RoutineDetail() {
             routine.status === "ok" ? styles.ok : styles.pending,
           ]}
         >
-          <Text style={styles.statusText}>
+          <Text allowFontScaling style={styles.statusText}>
             {routine.status === "ok" ? "✓" : "✕"}
           </Text>
         </View>
@@ -136,6 +137,8 @@ export default function RoutineDetail() {
           contentContainerStyle={{ padding: 14 }}
           renderItem={({ item, index }) => (
             <Pressable
+            accessibilityRole="button"
+  accessibilityLabel="Continuar"
               onPress={() =>
                 router.push(`/routines/${id}/activities/${item.id}`)
               }

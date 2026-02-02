@@ -1,15 +1,15 @@
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  ScrollView,
-  ImageBackground,
-} from "react-native";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { useNavigation, DrawerActions } from "@react-navigation/native";
+import React from "react";
+import {
+  ImageBackground,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 type RowProps = {
   icon: string; // emoji para simplificar (luego lo cambias a icon library)
@@ -22,28 +22,30 @@ type RowProps = {
 function Row({ icon, title, subtitle, rightText, onPress }: RowProps) {
   return (
     <Pressable
+      accessibilityRole="button"
+      accessibilityLabel="Configuración"
       onPress={onPress}
       style={({ pressed }) => [styles.row, pressed && { opacity: 0.9 }]}
     >
       <View style={styles.rowLeft}>
-        <Text style={styles.rowIcon}>{icon}</Text>
+        <Text allowFontScaling style={styles.rowIcon}>{icon}</Text>
       </View>
 
       <View style={styles.rowMid}>
-        <Text style={styles.rowTitle}>{title}</Text>
-        {!!subtitle && <Text style={styles.rowSub}>{subtitle}</Text>}
+        <Text allowFontScaling style={styles.rowTitle}>{title}</Text>
+        {!!subtitle && <Text allowFontScaling style={styles.rowSub}>{subtitle}</Text>}
       </View>
 
       <View style={styles.rowRight}>
-        {!!rightText && <Text style={styles.rowRightText}>{rightText}</Text>}
-        <Text style={styles.chev}>›</Text>
+        {!!rightText && <Text allowFontScaling style={styles.rowRightText}>{rightText}</Text>}
+        <Text allowFontScaling style={styles.chev}>›</Text>
       </View>
     </Pressable>
   );
 }
 
 function SectionTitle({ title }: { title: string }) {
-  return <Text style={styles.sectionTitle}>{title}</Text>;
+  return <Text allowFontScaling style={styles.sectionTitle}>{title}</Text>;
 }
 
 export default function SettingsScreen() {
@@ -57,6 +59,7 @@ export default function SettingsScreen() {
       >
         {/* Header con imagen de fondo */}
         <ImageBackground
+          accessibilityLabel="Fondo mostrando un paisaje como representación de la personalidad del usuario"
           source={{
             uri: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=60",
           }}
@@ -69,10 +72,12 @@ export default function SettingsScreen() {
           {/* top bar */}
           <View style={styles.headerTop}>
             <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Abrir menú"
               style={styles.menuButton}
               onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
             >
-              <Text style={styles.menuIcon}>☰</Text>
+              <Text allowFontScaling style={styles.menuIcon}>☰</Text>
             </Pressable>
           </View>
 
@@ -80,12 +85,13 @@ export default function SettingsScreen() {
           <View style={styles.headerCenter}>
             <View style={styles.avatarWrap}>
               <Image
+                accessibilityLabel="Imagen de perfil del usuario"
                 source={{ uri: "https://i.pravatar.cc/200?img=12" }}
                 style={styles.avatar}
                 contentFit="cover"
               />
               <View style={styles.editDot}>
-                <Text
+                <Text allowFontScaling
                   style={{ color: "white", fontWeight: "900", fontSize: 10 }}
                 >
                   ✎
@@ -93,21 +99,21 @@ export default function SettingsScreen() {
               </View>
             </View>
 
-            <Text style={styles.name}>Juan Posso</Text>
-            <Text style={styles.handle}>@stepflower</Text>
+            <Text allowFontScaling style={styles.name}>Juan Posso</Text>
+            <Text allowFontScaling style={styles.handle}>@stepflower</Text>
 
             {/* stats */}
             <View style={styles.statsRow}>
               <View style={styles.stat}>
-                <Text style={styles.statValue}>210</Text>
-                <Text style={styles.statLabel}>Following</Text>
+                <Text allowFontScaling style={styles.statValue}>210</Text>
+                <Text allowFontScaling style={styles.statLabel}>Following</Text>
               </View>
 
               <View style={styles.statDivider} />
 
               <View style={styles.stat}>
-                <Text style={styles.statValue}>359k</Text>
-                <Text style={styles.statLabel}>Followers</Text>
+                <Text allowFontScaling style={styles.statValue}>359k</Text>
+                <Text allowFontScaling style={styles.statLabel}>Followers</Text>
               </View>
             </View>
           </View>
@@ -119,23 +125,23 @@ export default function SettingsScreen() {
 
           <View style={styles.grid}>
             <View style={styles.gridItem}>
-              <Text style={styles.gridLabel}>Date of Birth</Text>
-              <Text style={styles.gridValue}>21 Sep 2001</Text>
+              <Text allowFontScaling style={styles.gridLabel}>Date of Birth</Text>
+              <Text allowFontScaling style={styles.gridValue}>21 Sep 2001</Text>
             </View>
 
             <View style={styles.gridItem}>
-              <Text style={styles.gridLabel}>Gender</Text>
-              <Text style={styles.gridValue}>Male</Text>
+              <Text allowFontScaling style={styles.gridLabel}>Gender</Text>
+              <Text allowFontScaling style={styles.gridValue}>Male</Text>
             </View>
 
             <View style={styles.gridItem}>
-              <Text style={styles.gridLabel}>Marital Status</Text>
-              <Text style={styles.gridValue}>Single</Text>
+              <Text allowFontScaling style={styles.gridLabel}>Marital Status</Text>
+              <Text allowFontScaling style={styles.gridValue}>Single</Text>
             </View>
 
             <View style={styles.gridItem}>
-              <Text style={styles.gridLabel}>Profession</Text>
-              <Text style={styles.gridValue}>Product Designer</Text>
+              <Text allowFontScaling style={styles.gridLabel}>Profession</Text>
+              <Text allowFontScaling style={styles.gridValue}>Product Designer</Text>
             </View>
           </View>
 
@@ -145,13 +151,13 @@ export default function SettingsScreen() {
             icon="✉️"
             title="Email Address"
             subtitle="info@mail.com"
-            onPress={() => {}}
+            onPress={() => { }}
           />
           <Row
             icon="📞"
             title="Phone Number"
             subtitle="+593 999 999 999"
-            onPress={() => {}}
+            onPress={() => { }}
           />
         </View>
 
@@ -162,7 +168,7 @@ export default function SettingsScreen() {
             icon="🌐"
             title="Languages"
             subtitle="English, Spanish"
-            onPress={() => {}}
+            onPress={() => { }}
           />
         </View>
 
@@ -172,7 +178,7 @@ export default function SettingsScreen() {
             icon="📍"
             title="Location"
             subtitle="Quito, Ecuador"
-            onPress={() => {}}
+            onPress={() => { }}
           />
         </View>
 
@@ -182,20 +188,21 @@ export default function SettingsScreen() {
             icon="⭐"
             title="Interests"
             subtitle="Training, Adventure, Friends"
-            onPress={() => {}}
+            onPress={() => { }}
           />
         </View>
 
         <View style={styles.card}>
           <SectionTitle title="Settings" />
-          <Row icon="🔒" title="Privacy" onPress={() => {}} />
-          <Row icon="ℹ️" title="Information" onPress={() => {}} />
+          <Row icon="🔒" title="Privacy" onPress={() => { }} />
+          <Row icon="ℹ️" title="Information" onPress={() => { }} />
         </View>
 
         {/* Logout */}
-        <Pressable style={styles.logout} onPress={() => {}}>
-          <Text style={styles.logoutIcon}>⎋</Text>
-          <Text style={styles.logoutText}>Log out</Text>
+        <Pressable style={styles.logout} onPress={() => { }} accessibilityRole="button"
+          accessibilityLabel="Cerrar sesión">
+          <Text allowFontScaling style={styles.logoutIcon}>⎋</Text>
+          <Text allowFontScaling style={styles.logoutText}>Log out</Text>
         </Pressable>
       </ScrollView>
     </View>
@@ -203,6 +210,9 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
+  menuButton: {
+
+  },
   screen: { flex: 1, backgroundColor: "#f6f2ef" },
 
   headerBg: {

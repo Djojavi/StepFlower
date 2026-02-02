@@ -1,8 +1,7 @@
-import React, { useMemo } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import AppHeader from "../../../../components/AppHeader";
 import { Image } from "expo-image";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useMemo } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 /*
   Luego esto puede venir aqui SQLite con useEffect
 */
@@ -71,9 +70,10 @@ export default function ActivityDetailScreen() {
   if (!routine || !activity || index < 0) {
     return (
       <View style={styles.center}>
-        <Text>No se encontró la actividad.</Text>
-        <Pressable onPress={() => router.back()}>
-          <Text style={{ fontWeight: "700" }}>Volver</Text>
+        <Text allowFontScaling>No se encontró la actividad.</Text>
+        <Pressable onPress={() => router.back()} accessibilityRole="button"
+  accessibilityLabel="Volver">
+          <Text allowFontScaling style={{ fontWeight: "700" }}>Volver</Text>
         </Pressable>
       </View>
     );
@@ -100,20 +100,20 @@ export default function ActivityDetailScreen() {
     <View style={styles.screen}>
       {/* Sub header */}
       <View style={styles.subHeader}>
-        <Text style={styles.title}>
+        <Text allowFontScaling style={styles.title}>
           {routine.title} ({stepLabel})
         </Text>
       </View>
 
       {/* Card actividad */}
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>{activity.title}</Text>
-        <Text style={{ fontSize: 22 }}>{activity.icon ?? "✅"}</Text>
+        <Text allowFontScaling style={styles.cardTitle}>{activity.title}</Text>
+        <Text allowFontScaling style={{ fontSize: 22 }}>{activity.icon ?? "✅"}</Text>
       </View>
 
       {/* Descripción */}
       <View style={styles.description}>
-        <Text style={styles.descriptionText}>
+        <Text allowFontScaling style={styles.descriptionText}>
           {activity.description ?? "Sin descripción"}
         </Text>
       </View>
@@ -130,15 +130,19 @@ export default function ActivityDetailScreen() {
       {/* Botones */}
       <View style={styles.bottom}>
         <Pressable
+        accessibilityRole="button"
+  accessibilityLabel="Anterior"
           onPress={goPrev}
           disabled={index === 0}
           style={[styles.btn, styles.outline, index === 0 && styles.disabled]}
         >
-          <Text style={styles.outlineText}>Anterior</Text>
+          <Text allowFontScaling style={styles.outlineText}>Anterior</Text>
         </Pressable>
 
-        <Pressable onPress={goNext} style={[styles.btn, styles.primary]}>
-          <Text style={styles.primaryText}>
+        <Pressable onPress={goNext} style={[styles.btn, styles.primary]} accessibilityRole="button"
+  accessibilityLabel={index === total - 1 ? "Finalizar" : "Siguiente"}>
+          
+          <Text allowFontScaling style={styles.primaryText}>
             {index === total - 1 ? "Finalizar" : "Siguiente"}
           </Text>
         </Pressable>

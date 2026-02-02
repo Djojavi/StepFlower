@@ -1,6 +1,6 @@
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import { useNavigation, DrawerActions } from "@react-navigation/native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function AppHeader({
   title = "StepFlower",
@@ -12,13 +12,15 @@ export default function AppHeader({
   return (
     <View style={styles.container}>
       <Pressable
+      accessibilityRole="button"
+  accessibilityLabel="Menú"
         style={styles.menuButton}
         onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
       >
-        <Text style={styles.menuIcon}>☰</Text>
+        <Text allowFontScaling style={styles.menuIcon}>☰</Text>
       </Pressable>
 
-      <Text style={styles.title}>{title}</Text>
+      <Text allowFontScaling style={styles.title}>{title}</Text>
 
       {/* espacio para balancear */}
       <View style={styles.rightSpace} />

@@ -1,15 +1,15 @@
-import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
 import type { DrawerContentComponentProps } from "@react-navigation/drawer";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
-import { router } from "expo-router";
+import { Href, router } from "expo-router";
+import React from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 type Item = {
   key: string;
   title: string;
   subtitle: string;
   icon: string; // emoji para simplificar
-  href: string; // ruta expo-router
+  href: string | Href; // ruta expo-router
 };
 
 const ITEMS: Item[] = [
@@ -40,7 +40,7 @@ export default function CustomDrawerContent(
     <View style={styles.container}>
       {/* Header verde */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Menu</Text>
+        <Text allowFontScaling style={styles.headerTitle}>Menu</Text>
       </View>
 
       <DrawerContentScrollView
@@ -57,8 +57,10 @@ export default function CustomDrawerContent(
               key={item.key}
               onPress={() => {
                 props.navigation.closeDrawer();
-                router.push(item.href);
+                router.push(item.href as Href);
               }}
+              accessibilityRole="button"
+  accessibilityLabel="Navegar"
               style={({ pressed }) => [
                 styles.item,
                 isActive && styles.itemActive,
@@ -66,12 +68,12 @@ export default function CustomDrawerContent(
               ]}
             >
               <View style={styles.iconWrap}>
-                <Text style={styles.icon}>{item.icon}</Text>
+                <Text allowFontScaling style={styles.icon}>{item.icon}</Text>
               </View>
 
               <View style={styles.textWrap}>
-                <Text style={styles.itemTitle}>{item.title}</Text>
-                <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
+                <Text allowFontScaling style={styles.itemTitle}>{item.title}</Text>
+                <Text allowFontScaling style={styles.itemSubtitle}>{item.subtitle}</Text>
               </View>
             </Pressable>
           );

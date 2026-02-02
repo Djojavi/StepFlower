@@ -26,17 +26,19 @@ export function RutinaCard({
     <Pressable
       onPress={() => onPress(id)}
       style={({ pressed }) => [styles.card, pressed && { opacity: 0.92 }]}
+      accessibilityRole="button"
+  accessibilityLabel="Rutina"
     >
       <View style={styles.checkbox} />
 
       <View style={styles.avatar}>
-        <Text style={styles.avatarText}>{avatarEmoji}</Text>
+        <Text allowFontScaling style={styles.avatarText}>{avatarEmoji}</Text>
       </View>
 
       <View style={styles.info}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.date}>{date}</Text>
-        <Text style={styles.steps}>
+        <Text allowFontScaling style={styles.title}>{title}</Text>
+        <Text allowFontScaling style={styles.date}>{date}</Text>
+        <Text allowFontScaling style={styles.steps}>
           {stepsDone}/{stepsTotal} steps
         </Text>
       </View>
@@ -47,7 +49,7 @@ export function RutinaCard({
           status === "ok" ? styles.ok : styles.pending,
         ]}
       >
-        <Text style={styles.statusText}>{status === "ok" ? "✓" : "✕"}</Text>
+        <Text allowFontScaling style={styles.statusText}>{status === "ok" ? "✓" : "✕"}</Text>
       </View>
     </Pressable>
   );

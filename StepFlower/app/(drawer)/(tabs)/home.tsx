@@ -1,9 +1,9 @@
 // app/(tabs)/home.tsx
-import React from "react";
-import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
-import { useRouter } from "expo-router";
-import { RutinaCard } from "@/components/RutinaCard";
 import AppHeader from "@/components/AppHeader";
+import { RutinaCard } from "@/components/RutinaCard";
+import { useRouter } from "expo-router";
+import React from "react";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
 const ROUTINES = [
   {
@@ -31,7 +31,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.screen}>
       <AppHeader title="StepFlower" />
-      <Text style={styles.sectionTitle}>Mis Rutinas</Text>
+      <Text allowFontScaling style={styles.sectionTitle}>Mis Rutinas</Text>
       <View style={styles.panel}>
         <FlatList
           data={ROUTINES}
@@ -53,12 +53,14 @@ export default function HomeScreen() {
       </View>
 
       <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Crear rutina"
         style={styles.fab}
         onPress={() => {
           /* crear rutina */
         }}
       >
-        <Text style={styles.fabText}>＋</Text>
+        <Text allowFontScaling style={styles.fabText}>＋</Text>
       </Pressable>
     </View>
   );

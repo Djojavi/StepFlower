@@ -1,7 +1,6 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
-import { useRouter, useLocalSearchParams } from "expo-router";
-import AppHeader from "../../../../components/AppHeader";
 import { Image } from "expo-image";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 export default function CompletedScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams();
@@ -9,13 +8,14 @@ export default function CompletedScreen() {
   return (
     <View style={styles.screen}>
       <View style={styles.center}>
-        <Text style={styles.title}>¡Felicidades!</Text>
-        <Text style={styles.subtitle}>
+        <Text allowFontScaling style={styles.title}>¡Felicidades!</Text>
+        <Text allowFontScaling style={styles.subtitle}>
           Terminaste exitosamente esta rutina.
         </Text>
 
         <View style={styles.bigArea}>
           <Image
+            accessibilityLabel="Mensaje de felicidades"
             source={require("@/assets/images/felicidades.png")}
             style={styles.image}
             contentFit="contain"
@@ -24,8 +24,10 @@ export default function CompletedScreen() {
         <Pressable
           style={styles.button}
           onPress={() => router.replace("/(drawer)/(tabs)/home")}
+          accessibilityRole="button"
+  accessibilityLabel="Inicio"
         >
-          <Text style={styles.buttonText}>Inicio</Text>
+          <Text allowFontScaling style={styles.buttonText}>Inicio</Text>
         </Pressable>
       </View>
     </View>

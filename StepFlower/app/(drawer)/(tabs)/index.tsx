@@ -1,17 +1,19 @@
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { Text, StyleSheet, View, Pressable } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
   return (
     <View style={styles.container}>
       <Image
+        accessibilityLabel="Logo StepFlower"
         source={require("@/assets/images/logo.png")}
         style={styles.image}
       />
-      <Pressable style={styles.button} onPress={() => router.navigate("/home")}>
-        <Text style={styles.buttonText}>Comenzar</Text>
+      <Pressable style={styles.button} accessibilityRole="button"
+  accessibilityLabel="Comenzar" onPress={() => router.navigate("/home")}>
+        <Text allowFontScaling style={styles.buttonText}>Comenzar</Text>
       </Pressable>
     </View>
   );
