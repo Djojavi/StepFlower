@@ -8,7 +8,9 @@ export default function CompletedScreen() {
   return (
     <View style={styles.screen}>
       <View style={styles.center}>
-        <Text allowFontScaling style={styles.title}>¡Felicidades!</Text>
+        <Text allowFontScaling style={styles.title}>
+          ¡Felicidades!
+        </Text>
         <Text allowFontScaling style={styles.subtitle}>
           Terminaste exitosamente esta rutina.
         </Text>
@@ -25,9 +27,11 @@ export default function CompletedScreen() {
           style={styles.button}
           onPress={() => router.replace("/(drawer)/(tabs)/home")}
           accessibilityRole="button"
-  accessibilityLabel="Inicio"
+          accessibilityLabel="Inicio"
         >
-          <Text allowFontScaling style={styles.buttonText}>Inicio</Text>
+          <Text allowFontScaling style={styles.buttonText}>
+            Inicio
+          </Text>
         </Pressable>
       </View>
     </View>

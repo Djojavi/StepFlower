@@ -31,7 +31,9 @@ export default function HomeScreen() {
   return (
     <View style={styles.screen}>
       <AppHeader title="StepFlower" />
-      <Text allowFontScaling style={styles.sectionTitle}>Mis Rutinas</Text>
+      <Text allowFontScaling style={styles.sectionTitle}>
+        Mis Rutinas
+      </Text>
       <View style={styles.panel}>
         <FlatList
           data={ROUTINES}
@@ -56,11 +58,11 @@ export default function HomeScreen() {
         accessibilityRole="button"
         accessibilityLabel="Crear rutina"
         style={styles.fab}
-        onPress={() => {
-          /* crear rutina */
-        }}
+        onPress={() => {}}
       >
-        <Text allowFontScaling style={styles.fabText}>＋</Text>
+        <Text allowFontScaling style={styles.fabText}>
+          ＋
+        </Text>
       </Pressable>
     </View>
   );
